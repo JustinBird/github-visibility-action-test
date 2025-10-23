@@ -2,6 +2,8 @@ name: Visibility Test
 description: A test that the action makes the repo public and private
 
 on:
+  schedule:
+    - cron: '0 7 * * *'  # Every day at 07:00 UTC
   push:
   workflow_dispatch:
 

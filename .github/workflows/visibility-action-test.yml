@@ -2,6 +2,7 @@ name: Visibility Test
 description: A test that the action makes the repo public and private
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
@@ -27,7 +28,9 @@ jobs:
           -H "Accept: application/vnd.github+json"
           -H "Authorization: Bearer ${{ secrets.ADMINISTRATION_TOKEN }}"
           -H "X-GitHub-Api-Version: 2022-11-28"
-          https://api.github.com/repos/${{ github.repository }} | jq '.visibility'
+          https://api.github.com/repos/${{ github.repository }} |
+          jq '.visibility' |
+          grep "private"
 
       - name: Make the repo public
         uses: justinbird/github-visibility-action@main
@@ -46,4 +49,6 @@ jobs:
           -H "Accept: application/vnd.github+json"
           -H "Authorization: Bearer ${{ secrets.ADMINISTRATION_TOKEN }}"
           -H "X-GitHub-Api-Version: 2022-11-28"
-          https://api.github.com/repos/${{ github.repository }} | jq '.visibility'
+          https://api.github.com/repos/${{ github.repository }} |
+          jq '.visibility' |
+          grep "private"

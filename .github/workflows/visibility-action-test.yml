@@ -20,14 +20,14 @@ jobs:
         run: sleep 10s
         shell: bash
 
-    - name: Check that the repo is private
-      shell: bash
-      run: >
-        curl -L
-        -H "Accept: application/vnd.github+json"
-        -H "Authorization: Bearer ${{ secrets.ADMINISTRATION_TOKEN }}"
-        -H "X-GitHub-Api-Version: 2022-11-28"
-        https://api.github.com/repos/${{ github.repository }} | jq '.visbility'
+      - name: Check that the repo is private
+        shell: bash
+        run: >
+          curl -L
+          -H "Accept: application/vnd.github+json"
+          -H "Authorization: Bearer ${{ secrets.ADMINISTRATION_TOKEN }}"
+          -H "X-GitHub-Api-Version: 2022-11-28"
+          https://api.github.com/repos/${{ github.repository }} | jq '.visbility'
 
       - name: Make the repo public
         uses: justinbird/github-visibility-action@main
@@ -39,11 +39,11 @@ jobs:
         run: sleep 10s
         shell: bash
 
-    - name: Check that the repo is public
-      shell: bash
-      run: >
-        curl -L
-        -H "Accept: application/vnd.github+json"
-        -H "Authorization: Bearer ${{ secrets.ADMINISTRATION_TOKEN }}"
-        -H "X-GitHub-Api-Version: 2022-11-28"
-        https://api.github.com/repos/${{ github.repository }} | jq '.visbility'
+      - name: Check that the repo is public
+        shell: bash
+        run: >
+          curl -L
+          -H "Accept: application/vnd.github+json"
+          -H "Authorization: Bearer ${{ secrets.ADMINISTRATION_TOKEN }}"
+          -H "X-GitHub-Api-Version: 2022-11-28"
+          https://api.github.com/repos/${{ github.repository }} | jq '.visbility'
